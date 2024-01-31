@@ -1,0 +1,137 @@
+[
+    {
+        "name": "main",
+        "type": "partitioned",
+        "primaryKeys": [],
+        "prtnCol": "ts",
+        "columns": [
+            {
+                "type": "timestamp",
+                "attrDisk": "parted",
+                "attrOrd": "parted",
+                "name": "ts",
+                "attrMem": "",
+                "foreign": "",
+                "oldName": "ts"
+            },
+            {
+                "type": "symbol",
+                "name": "cellID",
+                "attrMem": "",
+                "attrOrd": "",
+                "attrDisk": "",
+                "foreign": "",
+                "oldName": "cellID"
+            },
+            {
+                "type": "",
+                "name": "phase",
+                "attrMem": "",
+                "attrOrd": "",
+                "attrDisk": "",
+                "foreign": "",
+                "oldName": "phase"
+            },
+            {
+                "type": "string",
+                "name": "imsi",
+                "attrMem": "",
+                "attrOrd": "",
+                "attrDisk": "",
+                "foreign": "",
+                "oldName": "imsi"
+            },
+            {
+                "type": "string",
+                "name": "imei",
+                "attrMem": "",
+                "attrOrd": "",
+                "attrDisk": "",
+                "foreign": "",
+                "oldName": "imei"
+            },
+            {
+                "type": "float",
+                "name": "dspeed",
+                "attrMem": "",
+                "attrOrd": "",
+                "attrDisk": "",
+                "foreign": "",
+                "oldName": "dspeed"
+            },
+            {
+                "type": "float",
+                "name": "uspeed",
+                "attrMem": "",
+                "attrOrd": "",
+                "attrDisk": "",
+                "foreign": "",
+                "oldName": "uspeed"
+            },
+            {
+                "type": "float",
+                "name": "lat",
+                "attrMem": "",
+                "attrOrd": "",
+                "attrDisk": "",
+                "foreign": "",
+                "oldName": "lat"
+            },
+            {
+                "type": "float",
+                "name": "lng",
+                "attrMem": "",
+                "attrOrd": "",
+                "attrDisk": "",
+                "foreign": "",
+                "oldName": "lng"
+            },
+            {
+                "type": "float",
+                "name": "cellDistance",
+                "attrMem": "",
+                "attrOrd": "",
+                "attrDisk": "",
+                "foreign": "",
+                "oldName": "cellDistance"
+            }
+        ],
+        "oldName": "main"
+    },
+    {
+        "columns": [
+            {
+                "type": "timestamp",
+                "attrDisk": "parted",
+                "attrOrd": "parted",
+                "name": "ts",
+                "attrMem": "",
+                "foreign": "",
+                "oldName": "ts"
+            },
+            {
+                "type": "symbol",
+                "name": "imsi",
+                "attrMem": "",
+                "attrOrd": "",
+                "attrDisk": "",
+                "foreign": "",
+                "oldName": "imsi"
+            },
+            {
+                "type": "long",
+                "name": "count0",
+                "attrMem": "",
+                "attrOrd": "",
+                "attrDisk": "",
+                "foreign": "",
+                "oldName": "count0"
+            }
+        ],
+        "name": "errs",
+        "type": "partitioned",
+        "primaryKeys": [],
+        "prtnCol": "ts",
+        "oldName": "errs"
+    }
+]

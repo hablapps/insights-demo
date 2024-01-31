@@ -1,0 +1,144 @@
+apiVersion: insights.kx.com/v1
+kind: Assembly
+metadata:
+  name: db-telco
+  labels:
+    insights.kx.com/databaseID: 5bd540bc-caa8-0945-b935-e2ca2c8ea37d
+spec:
+  labels:
+    kxname: db-telco
+  tables:
+    main:
+      name: main
+      type: partitioned
+      primaryKeys: []
+      prtnCol: ts
+      columns:
+        - type: timestamp
+          attrDisk: parted
+          attrOrd: parted
+          name: ts
+        - type: symbol
+          name: cellID
+        - type: ""
+          name: phase
+        - type: string
+          name: imsi
+        - type: string
+          name: imei
+        - type: float
+          name: dspeed
+        - type: float
+          name: uspeed
+        - type: float
+          name: lat
+        - type: float
+          name: lng
+        - type: float
+          name: cellDistance
+    errs:
+      columns:
+        - type: timestamp
+          attrDisk: parted
+          attrOrd: parted
+          name: ts
+        - type: symbol
+          name: imsi
+        - type: long
+          name: count0
+      name: errs
+      type: partitioned
+      primaryKeys: []
+      prtnCol: ts
+  mounts:
+    rdb:
+      type: stream
+      baseURI: none
+      partition: none
+      dependency:
+        - idb
+      volume: {}
+    idb:
+      type: local
+      baseURI: file:///data/db/idb
+      partition: ordinal
+      volume:
+        size: 250Gi
+    hdb:
+      type: local
+      baseURI: file:///data/db/hdb
+      partition: date
+      dependency:
+        - idb
+      volume:
+        size: 2Ti
+  elements:
+    dap:
+      instances:
+        da:
+          size: 1
+          rtLogVolume:
+            size: 40Gi
+          source: db-telco
+          k8sPolicy:
+            resources:
+              requests:
+                cpu: 100m
+                memory: 2Gi
+              limits:
+                cpu: 200m
+                memory: 4Gi
+          mountList:
+            - rdb
+            - idb
+            - hdb
+    sm:
+      source: db-telco
+      eodPeachLevel: part
+      size: 1
+      rtLogVolume:
+        size: 40Gi
+      tiers:
+        - mount: rdb
+          name: rdb
+        - compression:
+            algorithm: qipc
+            block: 14
+          mount: idb
+          name: idb
+          schedule:
+            freq: 0D00:10:00
+        - compression:
+            algorithm: qipc
+            block: 14
+          mount: hdb
+          name: hdb
+          retain: {}
+          schedule:
+            freq: 1D00:00:00
+      k8sPolicy:
+        resources:
+          requests:
+            cpu: 500m
+            memory: 2Gi
+          limits:
+            cpu: 1000m
+            memory: 4Gi
+    sp:
+      pipelines: {}
+    sequencer:
+      db-telco:
+        external: false
+        volume:
+          size: 40Gi
+        k8sPolicy:
+          resources:
+            limits:
+              memory: 1Gi
+              cpu: 1000m
+            requests:
+              memory: 512Mi
+              cpu: 1000m
+  queryEnvironment:
+    enabled: true
+    size: 1
