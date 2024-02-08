@@ -1,6 +1,4 @@
-# insights-demo
-
-Code snippets, schemas, and some utilities are provided for the reproduction of the Insights post.
+# KX Insights Enterprise Assembly Files
 
 The different files provided in this repository are:
 
