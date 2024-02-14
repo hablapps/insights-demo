@@ -11,3 +11,5 @@ The different files provided in this repository are:
 We highly recommend adhering closely to the provided documentation to ensure a successful reproduction of the experiment. However, should you wish to re-import all the data, you will find everything needed here.
 
 Should you encounter any issues, please do not hesitate to reach out for assistance at cristian.perez@hablapps.com.
+
+[Read the post here](https://www.habla.dev/blog/2024/02/14/Power-Up-Your-Data-Analytics-Insights.html)
